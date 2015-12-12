@@ -53,7 +53,7 @@ static NSTimeInterval const DEFAULT_WAVE_PERIOD = 240;
 
 - (void)updateBoundary:(CADisplayLink *)displayLink
 {
-    UIBezierPath * boundaryPath = [[UIBezierPath alloc]init];
+    UIBezierPath * boundaryPath = [UIBezierPath bezierPath];
     
     CGFloat layerWidth = CGRectGetWidth(self.bounds);
     CGFloat layerHeight = CGRectGetHeight(self.bounds);
@@ -61,9 +61,9 @@ static NSTimeInterval const DEFAULT_WAVE_PERIOD = 240;
     [boundaryPath moveToPoint:CGPointMake(0, layerHeight)];
     [boundaryPath addLineToPoint:CGPointMake(0, layerHeight - self.waveHeight)];
 
-    for (CGFloat x = 0; x <= CGRectGetWidth(self.bounds); x++) {
+    for (CGFloat x = 0; x <= layerWidth; x++) {
         
-        CGFloat y = self.waveAmplitude * sin(2 * M_PI/self.wavePeriod * x + 2 * M_PI/self.wavePeriod * displayLink.timestamp * self.waveSpeed) + layerHeight - self.waveHeight;
+        CGFloat y = self.waveAmplitude * sin(2 * M_PI/self.wavePeriod * (x + displayLink.timestamp * self.waveSpeed)) + layerHeight - self.waveHeight;
         [boundaryPath addLineToPoint:CGPointMake(x, y)];
     }
 

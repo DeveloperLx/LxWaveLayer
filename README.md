@@ -5,7 +5,7 @@
     You only need drag LxWaveLayer.h and LxWaveLayer.m to your project.
 
 ### CocoaPods
-    pod 'LxWaveLayer', '~> 1.0.0'
+    pod 'LxWaveLayer', '~> 1.0.1'
 
 ### Support
     Minimum support iOS version: iOS 6.0
